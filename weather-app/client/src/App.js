@@ -26,15 +26,22 @@ function App() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Form handling logic will be implemented in subsequent steps
-    console.log("Searching location:", location);
+
+    setLoading(true);
+
+    // CALL API
+    const response = await axios.get(
+      `http://localhost:5000/api/weather?city=${location}`
+    );
+    setWeather(response.data);
+
+    setLoading(false);
   };
 
   return (
-    <div className="App">
+    <div className="App" style={{ backgroundColor: getBackgroundColor() }}>
       <header className="App-header">
         <h1>Get Weather</h1>
-        {/* Search form */}
         <form onSubmit={handleSubmit}>
           <input
             type="text"
@@ -45,14 +52,32 @@ function App() {
           />
           <button type="submit">Search</button>
         </form>
-
         {/* Backend connection message */}
         {backendMessage && <p className="backend-message">{backendMessage}</p>}
 
-        {/* Weather information display */}
+        {/* Weather Display */}
         {weather && (
           <div className="weather-info">
-            <p>Weather information will be displayed here</p>
+            <h2>
+              {weather.city}, {weather.country}
+            </h2>
+
+            <div className="weather-content">
+              {/* left info */}
+              <div className="weather-data">
+                <div className="temperature">
+                  <p className="temp-main">{weather.temperature}°C</p>
+                  <p className="temp-feels">
+                    Feels like: {weather.feels_like}°C
+                  </p>
+                </div>
+                <p className="description">{weather.description}</p>
+                <div className="details">
+                  <p>Humidity: {weather.humidity}%</p>
+                  <p>Wind: {weather.wind_speed} m/s</p>
+                </div>
+              </div>
+            </div>
           </div>
         )}
       </header>
