@@ -12,6 +12,9 @@ Testing:
 ## Features
 
 Supports city name input only.
+
 Dynamic background: The webpage background changes based on the weather with three different colors.
+
 Real-time weather display: The left side of the page shows live weather conditions, temperature, wind speed, etc.
+
 Weather-based icons: The right side of the page displays icons that dynamically change based on the current weather conditions
