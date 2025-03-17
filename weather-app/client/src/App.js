@@ -38,6 +38,19 @@ function App() {
     setLoading(false);
   };
 
+  // dynamic backgrounds
+  const getBackgroundColor = () => {
+    if (!weather) return "#222";
+
+    const condition = weather.main?.toLowerCase();
+
+    if (condition?.includes("clear")) return "#0077cc";
+    if (condition?.includes("cloud")) return "#465367";
+    if (condition?.includes("rain")) return "#305a7a";
+
+    return "#222";
+  };
+
   return (
     <div className="App" style={{ backgroundColor: getBackgroundColor() }}>
       <header className="App-header">
@@ -76,6 +89,14 @@ function App() {
                   <p>Humidity: {weather.humidity}%</p>
                   <p>Wind: {weather.wind_speed} m/s</p>
                 </div>
+              </div>
+
+              {/* right icon */}
+              <div className="weather-icon-container">
+                <img
+                  src={`https://openweathermap.org/img/wn/${weather.icon}@4x.png`}
+                  alt={weather.description}
+                />
               </div>
             </div>
           </div>

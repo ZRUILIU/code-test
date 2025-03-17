@@ -125,6 +125,31 @@ button:hover {
   text-align: right;
 }
 
+.weather-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.weather-text {
+  flex: 2;
+  text-align: left;
+}
+
+.weather-icon-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.weather-icon {
+  width: 150px;
+  height: 150px;
+}
+
 /* Style for backend connection message */
 .backend-message {
   color: #17d466;
